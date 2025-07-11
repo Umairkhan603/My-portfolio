@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛍️ Colorful Store</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f7f9fc;
+      color: #333;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(90deg, #2c3e50 0%, #4a90e2 100%);
+      padding: 1rem 2rem;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .navbar nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar nav a:hover {
+      color: #ffd700;
+    }
+
+    /* Hero */
+    .hero {
+      background: url('images/banner.jpg') no-repeat center center/cover;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-content {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 2rem;
+      border-radius: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      background: #e67e22;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #d35400;
+    }
+
+    /* Categories */
+    .categories {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .category-card {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Product Section */
+    .product-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .product-container h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Product Card */
+    .product-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .product-card h3 {
+      margin: 1rem 0 0.5rem;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .product-card p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    /* Buy Button */
+    .product-card button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .product-card button:hover {
+      background-color: #357abd;
+    }
+
+    /* Cart */
+    .cart {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 300px;
+      background: #1f1f1f;
+      color: white;
+      padding: 20px;
+      height: 100%;
+      overflow-y: auto;
+      box-shadow: -4px 0 15px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+    }
+
+    .cart h2 {
+      margin-top: 0;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+    }
+
+    #cart-items {
+      list-style: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+
+    #cart-items li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      background: #333;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    #cart-items img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 10px;
+      border-radius: 5px;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .remove-btn {
+      background-color: crimson;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #2c3e50 0%, #4a90e2 100%);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Tweaks */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .navbar nav a {
+        margin: 0 10px;
+      }
+
+      .hero {
+        height: 50vh;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar .logo {
+        font-size: 1.2rem;
+      }
+
+      .hero-content h1 {
+        font-size: 1.5rem;
+      }
+
+      .product-container h2 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">🛍️ Colorful Store</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#shoes">Shoes</a>
+      <a href="#tshirts">T-Shirts</a>
+      <a href="#trousers">Trousers</a>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Welcome to the Most Colorful Store</h1>
+      <p>Trendy, affordable, and stylish outfits for everyone</p>
+      <a href="#products" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <section id="categories" class="categories">
+    <h2>Browse by Category</h2>
+    <div class="category-grid">
+      <a href="#shoes" class="category-card">👟 Shoes</a>
+      <a href="#tshirts" class="category-card">👕 T-Shirts</a>
+      <a href="#trousers" class="category-card">👖 Trousers</a>
+    </div>
+  </section>
+
+  <section id="products" class="product-container">
+    <h2>Our Products</h2>
+    <div class="product-grid">
+      <!-- Placeholder for products; can be populated dynamically via JavaScript -->
+      <div class="product-card">
+        <img src="images/sample-product.jpg" alt="Sample Product">
+        <h3>Sample Product</h3>
+        <p>Stylish and comfortable item for your wardrobe.</p>
+        <button>Add to Cart</button>
+      </div>
+      <!-- Add more product cards here as needed -->
+    </div>
+
+    <div id="shoes" class="product-container">
+      <h2>Shoes</h2>
+      <div class="product-grid">
+        <!-- Placeholder for shoes products -->
+        <div class="product-card">
+          <img src="images/sample-shoe.jpg" alt="Sample Shoe">
+          <h3>Trendy Sneakers</h3>
+          <p>Comfortable and stylish sneakers for everyday wear.</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tshirts" class="product-container">
+      <h2>T-Shirts</h2>
+      <div class="product-grid">
+        <!-- Placeholder for t-shirts products -->
+        <div class="product-card">
+          <img src="images/sample-tshirt.jpg" alt="Sample T-Shirt">
+          <h3>Graphic Tee</h3>
+          <p>Vibrant and trendy t-shirt for casual outings.</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="trousers" class="product-container">
+      <h2>Trousers</h2>
+      <div class="product-grid">
+        <!-- Placeholder for trousers products -->
+        <div class="product-card">
+          <img src="images/sample-trouser.jpg" alt="Sample Trouser">
+          <h3>Slim Fit Trousers</h3>
+          <p>Elegant and modern trousers for any occasion.</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Colorful Store. All rights reserved.</p>
+  </footer>
+</body>
+</html>

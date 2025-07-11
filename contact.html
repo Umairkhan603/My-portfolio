@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Umair Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" /> -->
+</head>
+<body>
+ <header class="navbar">
+  <div class="logo">
+    <img src="images/meta-badge.png" alt="Meta Badge" />
+    <h1>Muhammad Umair Khan</h1>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="certificates.html">Certificates</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+  <section class="about" id="home" data-aos="fade-up">
+    <img src="images/profile.png" alt="Profile" class="profile" />
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>I am an expert front-end developer certified by Meta...</p>
+      <ul>
+        <li>HTML, CSS, JavaScript</li>
+        <li>React & Advanced React</li>
+        <li>Responsive Design</li>
+        <li>Git & GitHub</li>
+        <li>UI/UX Principles</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- More sections like Certificates, Projects, etc. with data-aos="fade-up" -->
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+  </script>
+</body>
+</html>
