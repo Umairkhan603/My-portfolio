@@ -17,11 +17,8 @@ Built using **HTML, CSS, and JavaScript**.
 
 ## 📸 Preview
 
-### Homepage
-![Homepage Preview](images/profile.png)
-
 ### Certificates Section
-![Certificates Preview](images/cert1.jpg)
+![Certificates Preview](images/cert3.jpg)
 
 
 
