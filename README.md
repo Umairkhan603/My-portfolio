@@ -15,13 +15,6 @@ Built using **HTML, CSS, and JavaScript**.
 
 ---
 
-## 📸 Preview
-
-### Certificates Section
-![Certificates Preview](images/cert3.jpg)
-
-
-
 ---
 
 ## 🛠️ Technologies Used
